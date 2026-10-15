@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple AI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat {
+            width: 350px;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 15px;
+            text-align: center;
+        }
+        #messages {
+            height: 250px;
+            overflow-y: auto;
+            margin: 15px 0;
+            text-align: left;
+        }
+        input {
+            width: 65%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+        }
+        button {
+            padding: 10px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        p {
+            background: #334155;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat">
+    <h2>🤖 My Simple AI</h2>
+    <div id="messages">
+        <p>AI: Hello! Ask me anything.</p>
+    </div>
+    <input id="userInput" placeholder="Type message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let text = input.value.trim();
+    if (text === "") return;
+
+    let messages = document.getElementById("messages");
+    messages.innerHTML += "<p>You: " + text + "</p>";
+
+    let msg = text.toLowerCase();
+    let reply = "Sorry, I don't know that yet!";
+
+    if (msg.includes("hello") || msg.includes("hi"))
+        reply = "Hello! How can I help you?";
+    else if (msg.includes("name"))
+        reply = "I am your Simple AI chatbot!";
+    else if (msg.includes("how are you"))
+        reply = "I am fine! Thanks for asking.";
+    else if (msg.includes("html"))
+        reply = "HTML creates the structure of websites.";
+    else if (msg.includes("javascript"))
+        reply = "JavaScript makes websites interactive.";
+    else if (msg.includes("time"))
+        reply = "Current time: " + new Date().toLocaleTimeString();
+    else if (msg.includes("bye"))
+        reply = "Goodbye! Have a nice day.";
+
+    messages.innerHTML += "<p>AI: " + reply + "</p>";
+    messages.scrollTop = messages.scrollHeight;
+    input.value = "";
+}
+</script>
+
+</body>
+</html>
